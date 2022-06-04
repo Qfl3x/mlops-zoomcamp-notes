@@ -211,7 +211,16 @@ mlflow.<framework>.log_model(model, artifact_path="models_mlflow")
 where we replace the `<framework>` wih our model's framework (ex: `sklearn`, `xgboost`...etc).
 The `artifact_path` defines where in the `artifact_uri` the model is stored.
 
-We now have our model inside our `models_mlflow` directory in the experiment folder. ()
+We now have our model inside our `models_mlflow` directory in the experiment folder. (Using Autologging would store more data on parameters as well as the model)
+
+## Saving Artifacts with the Model:
+
+Sometimes we may want to save some artifacts with the model, for example in our case we may want to save the `DictVectorizer` object with the model for inference (subsequently testing as well). In that case we save the artifact as:
+```python
+mlflow.log_artifact("vectorizer.pkl", artifact_path="extra_artifacts")
+```
+
+Where `vectorizer.pkl` is the vectorizer stored in a Pickle file and `extra_artifacts` the folder within the artifacts of the model where the file is stored.
 
 ## Loading Models:
 
